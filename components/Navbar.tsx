@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import { LoginButton } from "./LoginButton";
+import { getSession } from "@/app/getSession";
+import { signOut, useSession } from "next-auth/react";
+import { LogoutButton } from "./LogoutButton";
 
 export function Navbar() {
   const [expanded, setExpanded] = useState(false);
+  const session = useSession();
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 border-b dark:border-gray-700">
@@ -41,9 +45,9 @@ export function Navbar() {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M1 1h15M1 7h15M1 13h15"
               />
             </svg>
@@ -81,9 +85,7 @@ export function Navbar() {
                 Categories
               </a>
             </li>
-            <li>
-              <LoginButton />
-            </li>
+            <li>{session.data ? <LogoutButton /> : <LoginButton />}</li>
           </ul>
         </div>
       </div>

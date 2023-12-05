@@ -1,8 +1,7 @@
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { getServerSession } from "next-auth";
+import { getSession } from "@/app/getSession";
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
+  const session = await getSession();
 
   if (session) {
     return <p>{JSON.stringify(session, null, 2)}</p>;
