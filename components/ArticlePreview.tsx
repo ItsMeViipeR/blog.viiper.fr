@@ -6,14 +6,16 @@ interface Image {
 interface ArticlePreviewProps {
   title: string;
   description: string;
-  img: Image;
+  img?: Image;
 }
 
 export const ArticlePreview = (props: ArticlePreviewProps) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
-      <figure>
-        <img src={props.img.src} alt={props.img.alt} />
+      <figure className="h-52">
+        {props.img !== undefined && (
+          <img src={props.img?.src} alt={props.img?.alt} />
+        )}
       </figure>
       <div className="card-body">
         <h2 className="card-title">{props.title}</h2>
