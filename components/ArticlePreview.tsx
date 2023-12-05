@@ -11,8 +11,8 @@ interface ArticlePreviewProps {
 
 export const ArticlePreview = (props: ArticlePreviewProps) => {
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
-      <figure className="h-52">
+    <div className="card w-96 bg-base-300 shadow-xl">
+      <figure className="h-64">
         {props.img !== undefined && (
           <img src={props.img?.src} alt={props.img?.alt} />
         )}
