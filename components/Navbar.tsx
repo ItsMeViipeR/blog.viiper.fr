@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import { LoginButton } from "./LoginButton";
-import { getSession } from "@/app/getSession";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { LogoutButton } from "./LogoutButton";
+
+const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
 export function Navbar() {
   const [expanded, setExpanded] = useState(false);
   const session = useSession();
+  const isAdmin = session.data?.user?.email === adminEmail;
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 border-b dark:border-gray-700">
@@ -84,6 +86,19 @@ export function Navbar() {
               >
                 Categories
               </a>
+            </li>
+
+            <li>
+              {session.data && isAdmin ? (
+                <a
+                  href="/admin"
+                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition-colors duration-100"
+                >
+                  Admin
+                </a>
+              ) : (
+                <>You have to be admin</>
+              )}
             </li>
             <li>{session.data ? <LogoutButton /> : <LoginButton />}</li>
           </ul>
