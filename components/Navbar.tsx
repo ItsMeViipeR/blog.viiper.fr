@@ -3,13 +3,13 @@
 import { useState } from "react";
 import { LoginButton } from "./LoginButton";
 import { LogoutButton } from "./LogoutButton";
-import { getSession } from "@/app/getSession";
+import { useSession } from "next-auth/react";
 
 const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
 export function Navbar() {
   const [expanded, setExpanded] = useState(false);
-  const session = getSession();
+  const session = useSession();
   const isAdmin = session.data?.user?.email === adminEmail;
 
   return (

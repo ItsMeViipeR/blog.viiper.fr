@@ -1,12 +1,13 @@
 "use client";
 
 import { redirect } from "next/navigation";
-import { getSession } from "../getSession";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { useSession } from "next-auth/react";
 
 const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 
 export default function Home() {
-  const session = getSession();
+  const session = useSession();
   const isAdmin = session.data?.user?.email === adminEmail;
 
   return (
