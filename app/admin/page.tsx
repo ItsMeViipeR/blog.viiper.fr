@@ -1,7 +1,6 @@
 "use client";
 
 import { redirect } from "next/navigation";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { useSession } from "next-auth/react";
 
 const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
