@@ -19,7 +19,7 @@ export default async function handler(
     });
 
     return res.status(200).json({ message: "Article deleted" });
-  } catch (error) {
+  } catch (error: any) {
     return res.status(500).json({ message: error.message });
   }
 }
