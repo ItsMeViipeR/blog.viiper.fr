@@ -1,6 +1,7 @@
 "use client";
 
 import ky from "ky";
+import { redirect } from "next/navigation";
 
 interface Image {
   src: string | null;
@@ -30,7 +31,12 @@ export const ArticlePreviewAdmin = (props: ArticlePreviewProps) => {
         <h2 className="card-title">{props.title}</h2>
         <p>{props.description}</p>
         <div className="card-actions justify-end mt-2">
-          <button className="btn btn-primary">Edit</button>
+          <a
+            className="btn btn-primary"
+            href={`/admin/articles/edit/${props.id}`}
+          >
+            Edit
+          </a>
           <button
             className="btn btn-error"
             onClick={() => {
