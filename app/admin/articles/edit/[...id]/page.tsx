@@ -1,5 +1,5 @@
 import prisma from "@/app/db/prisma";
-import { EditForm } from "@/components/EditForm";
+import { EditForm } from "@/components/ArticleEditForm";
 
 import { useForm } from "react-hook-form";
 
