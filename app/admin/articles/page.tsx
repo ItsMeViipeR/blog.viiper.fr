@@ -25,7 +25,10 @@ export default async function AdminArticles() {
               });
 
               return (
-                <div className="flex justify-center items-center pt-6">
+                <div
+                  className="flex justify-center items-center pt-6"
+                  key={article.id}
+                >
                   <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
                     <ArticlePreviewAdmin
                       id={article.id}
