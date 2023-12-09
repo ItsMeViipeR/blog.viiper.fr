@@ -8,6 +8,7 @@ interface Image {
 
 interface RequestBody {
   title: string;
+  author: string;
   description: string;
   content: string;
   img: Image;
@@ -22,19 +23,19 @@ export default async function handler(
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  const { title, description, content, img, category } =
+  const { title, author, description, content, img, category } =
     req.body as RequestBody;
 
   try {
     await prisma.article.create({
       data: {
         title,
+        author,
         description,
         content,
         imgSrc: img.src,
         imgAlt: img.alt,
         categoryId: category,
-        author: "ViipeR",
       },
     });
 

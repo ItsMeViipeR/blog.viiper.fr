@@ -30,6 +30,21 @@ export function WriteForm(props: WriteFormProps) {
         </div>
         <div className="mb-4">
           <label
+            htmlFor="title"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Author
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+            id="author"
+            type="text"
+            placeholder="Author"
+            required
+          ></input>
+        </div>
+        <div className="mb-4">
+          <label
             htmlFor="description"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
@@ -112,6 +127,9 @@ export function WriteForm(props: WriteFormProps) {
               const title = (
                 document.getElementById("title") as HTMLInputElement
               ).value;
+              const author = (
+                document.getElementById("author") as HTMLInputElement
+              ).value;
               const description = (
                 document.getElementById("description") as HTMLInputElement
               ).value;
@@ -131,6 +149,7 @@ export function WriteForm(props: WriteFormProps) {
               ky.post(`/api/articles/write`, {
                 json: {
                   title,
+                  author,
                   description,
                   content,
                   category: category?.options.selectedIndex! + 1,
