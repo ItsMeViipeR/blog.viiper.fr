@@ -19,19 +19,30 @@ export default async function AdminArticles() {
               Write a new article
             </a>
 
-            {articles.map((article) => (
-              <ArticlePreviewAdmin
-                id={article.id}
-                key={article.id}
-                title={article.title}
-                description={article.description}
-                img={
-                  article.imgSrc !== null
-                    ? { src: article.imgSrc, alt: article.imgAlt }
-                    : undefined
-                }
-              />
-            ))}
+            {articles.map(async (article) => {
+              const articleCategory = await prisma?.category.findFirst({
+                where: { id: article.categoryId },
+              });
+
+              return (
+                <div className="flex justify-center items-center pt-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+                    <ArticlePreviewAdmin
+                      id={article.id}
+                      key={article.id}
+                      title={article.title}
+                      description={article.description}
+                      img={
+                        article.imgSrc !== null
+                          ? { src: article.imgSrc, alt: article.imgAlt }
+                          : undefined
+                      }
+                      category={articleCategory?.name!}
+                    />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       ) : (

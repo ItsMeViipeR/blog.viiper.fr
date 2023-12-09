@@ -13,6 +13,7 @@ interface ArticlePreviewProps {
   title: string;
   description: string;
   img?: Image;
+  category: string;
 }
 
 export const ArticlePreviewAdmin = (props: ArticlePreviewProps) => {
@@ -30,6 +31,9 @@ export const ArticlePreviewAdmin = (props: ArticlePreviewProps) => {
       <div className="card-body">
         <h2 className="card-title">{props.title}</h2>
         <p>{props.description}</p>
+        <span className="inline-flex items-center justify-center rounded-full bg-blue-600 text-white text-center px-2.5 py-0.5">
+          <p className="whitespace-nowrap text-sm">{props.category}</p>
+        </span>
         <div className="card-actions justify-end mt-2">
           <a
             className="btn btn-primary"

@@ -6,18 +6,25 @@ export async function ArticleLoader() {
 
   return (
     <div className="articles">
-      {articles.map((article) => (
-        <ArticlePreview
-          key={article.id}
-          title={article.title}
-          description={article.description}
-          img={
-            article.imgSrc !== null
-              ? { src: article.imgSrc, alt: article.imgAlt }
-              : undefined
-          }
-        />
-      ))}
+      {articles.map(async (article) => {
+        const articleCategory = await prisma?.category.findFirst({
+          where: { id: article.categoryId },
+        });
+
+        return (
+          <ArticlePreview
+            key={article.id}
+            title={article.title}
+            description={article.description}
+            img={
+              article.imgSrc !== null
+                ? { src: article.imgSrc, alt: article.imgAlt }
+                : undefined
+            }
+            category={articleCategory?.name!}
+          />
+        );
+      })}
     </div>
   );
 }
