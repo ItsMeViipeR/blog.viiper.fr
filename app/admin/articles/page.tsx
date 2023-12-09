@@ -14,7 +14,11 @@ export default async function AdminArticles() {
     <>
       {isAdmin ? (
         <div className="flex justify-center items-center pt-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+          <div className="grid gap-6">
+            <a href="/admin/articles/write" className="btn btn-primary">
+              Write a new article
+            </a>
+
             {articles.map((article) => (
               <ArticlePreviewAdmin
                 id={article.id}
