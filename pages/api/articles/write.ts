@@ -12,7 +12,7 @@ interface RequestBody {
   description: string;
   content: string;
   img: Image;
-  category: number;
+  category: string;
 }
 
 export default async function handler(
@@ -26,6 +26,12 @@ export default async function handler(
   const { title, author, description, content, img, category } =
     req.body as RequestBody;
 
+  const categoryId = (await prisma?.category.findFirst({
+    where: {
+      name: category,
+    },
+  }))!.id;
+
   try {
     await prisma.article.create({
       data: {
@@ -35,12 +41,13 @@ export default async function handler(
         content,
         imgSrc: img.src,
         imgAlt: img.alt,
-        categoryId: category,
+        categoryId,
       },
     });
 
     return res.status(200).json({ message: "Article created" });
   } catch (error: any) {
+    console.log(`Error message: ${error.message}`);
     return res.status(500).json({ message: error.message });
   }
 }

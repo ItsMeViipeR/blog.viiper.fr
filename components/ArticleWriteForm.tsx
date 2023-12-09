@@ -152,7 +152,7 @@ export function WriteForm(props: WriteFormProps) {
                   author,
                   description,
                   content,
-                  category: category?.options.selectedIndex! + 1,
+                  category: category?.selectedOptions[0].value,
                   img: {
                     src: src !== "" ? src : null,
                     alt: alt !== "" ? alt : null,
