@@ -22,7 +22,11 @@ export default async function AdminCategories() {
             <div className="flex justify-center items-center pt-6">
               <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
                 {categories.map((category) => (
-                  <CategoryPreviewAdmin id={category.id} name={category.name} />
+                  <CategoryPreviewAdmin
+                    id={category.id}
+                    name={category.name}
+                    key={category.id}
+                  />
                 ))}
               </div>
             </div>
