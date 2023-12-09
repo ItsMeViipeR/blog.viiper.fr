@@ -137,8 +137,9 @@ export function WriteForm(props: WriteFormProps) {
                 document.getElementById("content") as HTMLInputElement
               ).value;
               const src =
-                (document.getElementById("src") as HTMLInputElement) !== null
-                  ? (document.getElementById("src") as HTMLInputElement).value
+                (document.getElementById("imgUrl") as HTMLInputElement) !== null
+                  ? (document.getElementById("imgUrl") as HTMLInputElement)
+                      .value
                   : null;
               const alt =
                 (document.getElementById("alt") as HTMLInputElement) !== null
