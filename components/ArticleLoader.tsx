@@ -5,7 +5,7 @@ export async function ArticleLoader() {
   const articles = await prisma.article.findMany();
 
   return (
-    <div className="articles">
+    <>
       {articles.map(async (article) => {
         const articleCategory = await prisma?.category.findFirst({
           where: { id: article.categoryId },
@@ -14,6 +14,7 @@ export async function ArticleLoader() {
         return (
           <ArticlePreview
             key={article.id}
+            id={article.id}
             title={article.title}
             description={article.description}
             img={
@@ -25,6 +26,6 @@ export async function ArticleLoader() {
           />
         );
       })}
-    </div>
+    </>
   );
 }

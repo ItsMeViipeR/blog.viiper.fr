@@ -4,6 +4,7 @@ interface Image {
 }
 
 interface ArticlePreviewProps {
+  id: number;
   title: string;
   description: string;
   img?: Image;
@@ -29,7 +30,9 @@ export const ArticlePreview = (props: ArticlePreviewProps) => {
           <p className="whitespace-nowrap text-sm">{props.category}</p>
         </span>
         <div className="card-actions justify-end mt-2">
-          <button className="btn btn-primary">Read</button>
+          <a className="btn btn-primary" href={`/articles/read/${props.id}`}>
+            Read
+          </a>
         </div>
       </div>
     </div>
